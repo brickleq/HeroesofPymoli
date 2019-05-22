@@ -91,8 +91,8 @@ print('Number of unique items: ' + str(uniqueItems))
 averagePurchasePrice = purchaseData['Price'].mean()
 print('Average purchase price: $' + str(round(averagePurchasePrice,2)))
 # * Total Number of Purchases
-totalPurchases = purchaseData['Purchase ID'].count()
-print('Total number of purchases: ' + str(totalPurchases))
+purchaseCount = purchaseData['Purchase ID'].count()
+print('Total number of purchases: ' + str(purchaseCount))
 # * Total Revenue
 print('Total revenue: $' + str(round(purchaseData['Price'].sum(),2)))
 
@@ -118,5 +118,28 @@ print('Other / Non-Disclosed (count): ' + str(otherPlayerCount))
 otherPlayerPercentage = otherPlayerCount / playerCount
 print('Other / Non-Disclosed (percentage): ' + str(round(otherPlayerPercentage,4)*100) + ' %')
 
+#%%
+### Purchasing Analysis (Gender)
+print('Purchasing Analysis (Gender)','\n----------------------------')
+# * The below each broken by gender
+#  * Purchase Count
+malePurchaseCount = purchaseData['Purchase ID'].loc[purchaseData['Gender']=='Male'].count()
+femalePurchaseCount = purchaseData['Purchase ID'].loc[purchaseData['Gender']=='Female'].count()
+otherPurchaseCount = purchaseData['Purchase ID'].loc[(purchaseData['Gender']!='Female') & (purchaseData['Gender']!='Male')].count()
+print('Purchase Count','\n    Male: ' + str(malePurchaseCount) + '\n    Female: ' + str(femalePurchaseCount) + '\n    Other / Non-Disclosed: ' + str(otherPurchaseCount))
+
+#  * Average Purchase Price
+maleAveragePurchasePrice = purchaseData['Price'].loc[purchaseData['Gender']=='Male'].mean()
+femaleAveragePurchasePrice = purchaseData['Price'].loc[purchaseData['Gender']=='Female'].mean()
+otherAveragePurchasePrice = purchaseData['Price'].loc[(purchaseData['Gender']!='Female') & (purchaseData['Gender']!='Male')].mean()
+print('\nAverage Purchase Price','\n    Male: $' + str(round(maleAveragePurchasePrice,2)) + '\n    Female: $' + str(round(femaleAveragePurchasePrice,2)) + '0' + '\n    Other / Non-Disclosed: $' + str(round(otherAveragePurchasePrice,2)))
+
+#  * Total Purchase Value
+maleTotalPurchaseValue = purchaseData['Price'].loc[purchaseData['Gender']=='Male'].sum()
+femaleTotalPurchaseValue = purchaseData['Price'].loc[purchaseData['Gender']=='Female'].sum()
+otherTotalPurchaseValue = purchaseData['Price'].loc[(purchaseData['Gender']!='Female') & (purchaseData['Gender']!='Male')].sum()
+print('\nTotal Purchase Value','\n    Male: $' + str(round(maleTotalPurchaseValue,2)) + '\n    Female: $' + str(round(femaleTotalPurchaseValue,2)) + '\n    Other / Non-Disclosed: $' + str(round(otherTotalPurchaseValue,2)))
+
+#  * Average Purchase Total per Person by Gender
 
 #%%
