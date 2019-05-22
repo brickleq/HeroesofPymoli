@@ -102,16 +102,21 @@ print('Total revenue: $' + str(round(purchaseData['Price'].sum(),2)))
 print('Gender Demographics','\n-------------------')
 # * Percentage and Count of Male Players
 malePlayerCount = len(purchaseData['SN'].loc[purchaseData['Gender']=='Male'].unique())
-print('Male players (count): ' + str(malePlayerCount))
+print('Male (count): ' + str(malePlayerCount))
 malePlayerPercentage = malePlayerCount / playerCount
-print('Male players (percentage): ' + str(round(malePlayerPercentage,4)*100) + '%')
-#%%
+print('Male (percentage): ' + str(round(malePlayerPercentage,4)*100) + ' %')
+
 # * Percentage and Count of Female Players
 femalePlayerCount = len(purchaseData['SN'].loc[purchaseData['Gender']=='Female'].unique())
-
-print('Female players (count): ' + str(femalePlayerCount,2))
+print('Female (count): ' + str(femalePlayerCount))
+femalePlayerPercentage = femalePlayerCount / playerCount
+print('Female (percentage): ' + str(round(femalePlayerPercentage,4)*100) + ' %')
 
 # * Percentage and Count of Other / Non-Disclosed
+otherPlayerCount = playerCount - malePlayerCount - femalePlayerCount
+print('Other / Non-Disclosed (count): ' + str(otherPlayerCount))
+otherPlayerPercentage = otherPlayerCount / playerCount
+print('Other / Non-Disclosed (percentage): ' + str(round(otherPlayerPercentage,4)*100) + ' %')
 
 
 #%%
