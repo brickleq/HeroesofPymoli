@@ -141,5 +141,141 @@ otherTotalPurchaseValue = purchaseData['Price'].loc[(purchaseData['Gender']!='Fe
 print('\nTotal Purchase Value','\n    Male: $' + str(round(maleTotalPurchaseValue,2)) + '\n    Female: $' + str(round(femaleTotalPurchaseValue,2)) + '\n    Other / Non-Disclosed: $' + str(round(otherTotalPurchaseValue,2)))
 
 #  * Average Purchase Total per Person by Gender
+maleAveragePurchaseTotal = maleTotalPurchaseValue / malePlayerCount
+femaleAveragePurchaseTotal = femaleTotalPurchaseValue / femalePlayerCount
+otherAveragePurchaseTotal = otherTotalPurchaseValue / otherPlayerCount
+print('\nAverage Purchase Total per Person by Gender','\n    Male: $' + str(round(maleAveragePurchaseTotal,2)) + '\n    Female: $' + str(round(femaleAveragePurchaseTotal,2)) + '\n    Other / Non-Disclosed: $' + str(round(otherAveragePurchaseTotal,2)))
 
 #%%
+### Age Demographics
+# * The below each broken into bins of 4 years (i.e. &lt;10, 10-14, 15-19, etc.)
+print('Age Demographics','\n----------------\n')
+#  * Purchase Count
+print('Purchase Count')
+print('     < 10: ' + str(purchaseData['Purchase ID'].loc[purchaseData['Age']<10].count()))
+print('    10-14: ' + str((purchaseData['Purchase ID'].loc[(purchaseData['Age']>9) & (purchaseData['Age']<15)].count())))
+print('    15-19: ' + str((purchaseData['Purchase ID'].loc[(purchaseData['Age']>14) & (purchaseData['Age']<20)].count())))
+print('    20-24: ' + str((purchaseData['Purchase ID'].loc[(purchaseData['Age']>19) & (purchaseData['Age']<25)].count())))
+print('    25-29: ' + str((purchaseData['Purchase ID'].loc[(purchaseData['Age']>24) & (purchaseData['Age']<30)].count())))
+print('    30-34: ' + str((purchaseData['Purchase ID'].loc[(purchaseData['Age']>29) & (purchaseData['Age']<35)].count())))
+print('    35-39: ' + str((purchaseData['Purchase ID'].loc[(purchaseData['Age']>34) & (purchaseData['Age']<40)].count())))
+print('    40-44: ' + str((purchaseData['Purchase ID'].loc[(purchaseData['Age']>39) & (purchaseData['Age']<45)].count())))
+print('     > 44: '  + str(purchaseData['Purchase ID'].loc[purchaseData['Age']>44].count()))
+#%%
+#  * Average Purchase Price
+print('\nAverage Purchase Price')
+avgPrice = purchaseData['Price'].loc[purchaseData['Age']<10].mean()
+print('     < 10: $' + str(round(avgPrice,2)))
+avgPrice = purchaseData['Price'].loc[(purchaseData['Age']>9) & (purchaseData['Age']<15)].mean()
+print('    10-14: $' + str(round(avgPrice,2)))
+avgPrice = purchaseData['Price'].loc[(purchaseData['Age']>14) & (purchaseData['Age']<20)].mean()
+print('    15-19: $' + str(round(avgPrice,2)))
+avgPrice = purchaseData['Price'].loc[(purchaseData['Age']>19) & (purchaseData['Age']<25)].mean()
+print('    20-24: $' + str(round(avgPrice,2)))
+avgPrice = purchaseData['Price'].loc[(purchaseData['Age']>24) & (purchaseData['Age']<30)].mean()
+print('    25-29: $' + str(round(avgPrice,2)) + '0')
+avgPrice = purchaseData['Price'].loc[(purchaseData['Age']>29) & (purchaseData['Age']<35)].mean()
+print('    30-34: $' + str(round(avgPrice,2)))
+avgPrice = purchaseData['Price'].loc[(purchaseData['Age']>34) & (purchaseData['Age']<40)].mean()
+print('    35-39: $' + str(round(avgPrice,2)) + '0')
+avgPrice = purchaseData['Price'].loc[(purchaseData['Age']>39) & (purchaseData['Age']<45)].mean()
+print('    40-44: $' + str(round(avgPrice,2)))
+avgPrice = purchaseData['Price'].loc[purchaseData['Age']>44].mean()
+print('     > 44: $' + str(round(avgPrice,2)) + '0')
+
+#%%
+#  * Total Purchase Value
+print('\nTotal Purchase Value')
+sumPrice = purchaseData['Price'].loc[purchaseData['Age']<10].sum()
+print('     < 10: $' + str(round(sumPrice,2)))
+sumPrice = purchaseData['Price'].loc[(purchaseData['Age']>9) & (purchaseData['Age']<15)].sum()
+print('    10-14: $' + str(round(sumPrice,2)))
+sumPrice = purchaseData['Price'].loc[(purchaseData['Age']>14) & (purchaseData['Age']<20)].sum()
+print('    15-19: $' + str(round(sumPrice,2)))
+sumPrice = purchaseData['Price'].loc[(purchaseData['Age']>19) & (purchaseData['Age']<25)].sum()
+print('    20-24: $' + str(round(sumPrice,2)))
+sumPrice = purchaseData['Price'].loc[(purchaseData['Age']>24) & (purchaseData['Age']<30)].sum()
+print('    25-29: $' + str(round(sumPrice,2)) + '0')
+sumPrice = purchaseData['Price'].loc[(purchaseData['Age']>29) & (purchaseData['Age']<35)].sum()
+print('    30-34: $' + str(round(sumPrice,2)) + '0')
+sumPrice = purchaseData['Price'].loc[(purchaseData['Age']>34) & (purchaseData['Age']<40)].sum()
+print('    35-39: $' + str(round(sumPrice,2)))
+sumPrice = purchaseData['Price'].loc[(purchaseData['Age']>39) & (purchaseData['Age']<45)].sum()
+print('    40-44: $' + str(round(sumPrice,2)))
+sumPrice = purchaseData['Price'].loc[purchaseData['Age']>44].sum()
+print('     > 44: $' + str(round(sumPrice,2)) + '0')
+
+#%%
+#  * Average Purchase Total per Person by Age Group
+print('\nAverage Purchase Total per Person by Age Group')
+sumPrice = purchaseData['Price'].loc[purchaseData['Age']<10].sum()
+playerCountAge = len(purchaseData['SN'].loc[purchaseData['Age']<10].unique())
+avgPrice = sumPrice / playerCountAge
+print('     < 10: $' + str(round(avgPrice,2)))
+
+sumPrice = purchaseData['Price'].loc[(purchaseData['Age']>9) & (purchaseData['Age']<15)].sum()
+playerCountAge = len(purchaseData['SN'].loc[purchaseData['Age']<10].unique())
+avgPrice = sumPrice / playerCountAge
+print('    10-14: $' + str(round(avgPrice,2)))
+
+sumPrice = purchaseData['Price'].loc[(purchaseData['Age']>14) & (purchaseData['Age']<20)].sum()
+playerCountAge = len(purchaseData['SN'].loc[(purchaseData['Age']>14) & (purchaseData['Age']<20)].unique())
+avgPrice = sumPrice / playerCountAge
+print('    15-19: $' + str(round(avgPrice,2)))
+
+sumPrice = purchaseData['Price'].loc[(purchaseData['Age']>19) & (purchaseData['Age']<25)].sum()
+playerCountAge = len(purchaseData['SN'].loc[(purchaseData['Age']>19) & (purchaseData['Age']<25)].unique())
+avgPrice = sumPrice / playerCountAge
+print('    20-24: $' + str(round(avgPrice,2)))
+
+sumPrice = purchaseData['Price'].loc[(purchaseData['Age']>24) & (purchaseData['Age']<30)].sum()
+playerCountAge = len(purchaseData['SN'].loc[(purchaseData['Age']>24) & (purchaseData['Age']<30)].unique())
+avgPrice = sumPrice / playerCountAge
+print('    25-29: $' + str(round(avgPrice,2)))
+
+sumPrice = purchaseData['Price'].loc[(purchaseData['Age']>29) & (purchaseData['Age']<35)].sum()
+playerCountAge = len(purchaseData['SN'].loc[(purchaseData['Age']>29) & (purchaseData['Age']<35)].unique())
+avgPrice = sumPrice / playerCountAge
+print('    30-34: $' + str(round(avgPrice,2)))
+
+sumPrice = purchaseData['Price'].loc[(purchaseData['Age']>34) & (purchaseData['Age']<40)].sum()
+playerCountAge = len(purchaseData['SN'].loc[(purchaseData['Age']>34) & (purchaseData['Age']<40)].unique())
+avgPrice = sumPrice / playerCountAge
+print('    35-39: $' + str(round(avgPrice,2)))
+
+sumPrice = purchaseData['Price'].loc[(purchaseData['Age']>39) & (purchaseData['Age']<45)].sum()
+playerCountAge = len(purchaseData['SN'].loc[(purchaseData['Age']>39) & (purchaseData['Age']<45)].unique())
+avgPrice = sumPrice / playerCountAge
+print('    40-44: $' + str(round(avgPrice,2)))
+
+sumPrice = purchaseData['Price'].loc[purchaseData['Age']>44].sum()
+playerCountAge = len(purchaseData['SN'].loc[purchaseData['Age']>44].unique())
+avgPrice = sumPrice / playerCountAge
+print('     > 44: $' + str(round(avgPrice,2)) + '0')
+
+#%%
+### Top Spenders
+
+# * Identify the the top 5 spenders in the game by total purchase value, then list (in a table):
+#   * SN
+#   * Purchase Count
+#   * Average Purchase Price
+#   * Total Purchase Value
+
+### Most Popular Items
+
+# * Identify the 5 most popular items by purchase count, then list (in a table):
+#   * Item ID
+#   * Item Name
+#   * Purchase Count
+#   * Item Price
+#   * Total Purchase Value
+
+### Most Profitable Items
+
+# * Identify the 5 most profitable items by total purchase value, then list (in a table):
+#   * Item ID
+#   * Item Name
+#   * Purchase Count
+#   * Item Price
+#   * Total Purchase Value
